@@ -10,8 +10,8 @@ export default function ProductsHomePage(props: { products: IProduct[] }) {
     return (
         <div>
             {products.map((product) => (
-                <Link href={`/products/${product.id}`}>
-                    <div key={product.id}>
+                <Link key={product.id} href={`/products/${product.id}`}>
+                    <div>
                         {product.id}
                         {product.name}
                     </div>
