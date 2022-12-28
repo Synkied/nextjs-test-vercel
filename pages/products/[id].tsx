@@ -1,6 +1,7 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { IProduct } from "../../types/general";
+import products from "../data/products";
 
 export default function ProductDetailPage(props: { product: IProduct }) {
     const { product } = props;
@@ -19,8 +20,13 @@ export default function ProductDetailPage(props: { product: IProduct }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const res = await fetch(`${process.env.BACKEND_API_URL}/products/${context?.params?.id}`);
-    const product = await res.json();
+    const id  = context?.params?.id
+    let product = {id: -1, name: ""}
+
+    let result = products.find(product => product.id.toString() === id )
+    if (result) {
+        product = result
+    }
 
     return {
         props: {

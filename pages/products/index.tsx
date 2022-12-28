@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { IProduct } from "../../types/general";
+import {default as productsData} from "../data/products";
 
 export default function ProductsHomePage(props: { products: IProduct[] }) {
 
@@ -21,16 +22,8 @@ export default function ProductsHomePage(props: { products: IProduct[] }) {
     )
 }
 
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    let products: IProduct[] = [];
-
-    const res = await fetch(`${process.env.BACKEND_API_URL}/products/`);
-
-    if (res.status === 200) {
-        let productsResponse = await res.json();
-        products = productsResponse.results;
-    }
+    let products: IProduct[] = productsData
 
     return {
         props: {
