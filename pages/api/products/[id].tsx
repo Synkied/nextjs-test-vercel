@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { IProduct } from '../../../types/general'
-import products from '../../data/products'
+import products from '../../../data/products'
 
 let product = {id: -1, name: ""}
 

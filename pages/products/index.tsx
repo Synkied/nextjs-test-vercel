@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { IProduct } from "../../types/general";
-import {default as productsData} from "../data/products";
+import {default as productsData} from "../../data/products";
 
 export default function ProductsHomePage(props: { products: IProduct[] }) {
 

@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { IProduct } from "../../types/general";
-import products from "../data/products";
+import products from "../../data/products";
 
 export default function ProductDetailPage(props: { product: IProduct }) {
     const { product } = props;
