@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { IProduct } from "../../types/general";
 
@@ -18,26 +18,8 @@ export default function ProductDetailPage(props: { product: IProduct }) {
     );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch(`${process.env.BACKEND_API_URL}/products/`);
-    const products = await res.json();
-
-    const paths = products.results.map((product: IProduct) => {
-        return {
-            params: {
-                id: product.id,
-            },
-        };
-    });
-
-    return {
-        paths: paths,
-        fallback: true,
-    };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const res = await fetch(`${process.env.BACKEND_API_URL}/products/${params?.id}`);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const res = await fetch(`${process.env.BACKEND_API_URL}/products/${context?.params?.id}`);
     const product = await res.json();
 
     return {

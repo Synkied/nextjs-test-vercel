@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { IProduct } from "../../types/general";
 
 export default function ProductsHomePage(props: { products: IProduct[] }) {
@@ -9,7 +10,12 @@ export default function ProductsHomePage(props: { products: IProduct[] }) {
     return (
         <div>
             {products.map((product) => (
-                <div key={product.id}>{product.name}</div>
+                <Link href={`/products/${product.id}`}>
+                    <div key={product.id}>
+                        {product.id}
+                        {product.name}
+                    </div>
+                </Link>
             ))}
         </div>
     )
